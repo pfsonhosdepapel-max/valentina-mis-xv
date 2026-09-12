@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es-UY">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#241126">
+  <meta name="description" content="Invitación a los XV de Valentina Olivera">
+  <title>Valentina · Mis XV</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23241126'/%3E%3Cpath d='M12 20h8l12 31L44 20h8L35 56h-6z' fill='%23e3bd72'/%3E%3Ccircle cx='32' cy='13' r='4' fill='%23f4dfaa'/%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="assets/bloco-01.webp">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="welcome" class="welcome" role="dialog" aria-label="Abrir invitación">
+    <div class="welcome__veil"></div>
+    <div class="welcome__content">
+      <p class="eyebrow">VALENTINA</p>
+      <h1>MIS XV</h1>
+      <button id="openInvite" class="open-button" type="button">
+        <span>Abrir invitación</span>
+        <span class="open-button__spark" aria-hidden="true">✦</span>
+      </button>
+      <p class="sound-note">Activá el sonido para vivir la experiencia</p>
+    </div>
+  </div>
+
+  <div id="videoLayer" class="video-layer" hidden>
+    <video id="openingVideo" playsinline preload="metadata"></video>
+    <button id="skipVideo" class="skip-video" type="button">Saltar video</button>
+  </div>
+
+  <div id="afterVideo" class="after-video" hidden>
+    <div class="after-video__card">
+      <p class="eyebrow">VALENTINA</p>
+      <h1>MIS XV</h1>
+      <button id="enterInvite" class="open-button" type="button">
+        <span>Abrir invitación</span>
+        <span class="open-button__spark" aria-hidden="true">✦</span>
+      </button>
+      <p class="scroll-note">Deslizá hacia arriba para comenzar</p>
+    </div>
+  </div>
+
+  <audio id="music" src="assets/musica.mp3" loop preload="auto"></audio>
+
+  <main id="invitation" class="invitation" aria-hidden="true">
+    <section class="panel panel--first"><img src="assets/bloco-01.webp" alt="Valentina junto a un caballo, Mis XV" width="941" height="1672"></section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-02.webp" alt="Hay momentos que iluminan el camino" width="941" height="1672"></section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-03.webp" alt="Invitación a celebrar los 15 años de Valentina" width="941" height="1672"></section>
+    <section class="panel panel--countdown">
+      <img loading="lazy" src="assets/bloco-04.webp" alt="7 de noviembre de 2026 a las 20:30" width="941" height="1672">
+      <div class="countdown" aria-live="polite" aria-label="Cuenta regresiva para la celebración">
+        <p>FALTAN</p>
+        <div class="countdown__grid">
+          <div><strong id="days">00</strong><span>Días</span></div>
+          <div><strong id="hours">00</strong><span>Horas</span></div>
+          <div><strong id="minutes">00</strong><span>Min.</span></div>
+          <div><strong id="seconds">00</strong><span>Seg.</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-05.webp" alt="Crecer es descubrir nuevas versiones de mí" width="941" height="1672"></section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-06.webp" alt="Nos encontramos en Galeto Italia" width="941" height="1672"></section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-07-vestimenta.webp" alt="Código de vestimenta formal: vestido largo o midi; traje o pantalón de vestir con camisa" width="941" height="1672"></section>
+    <section class="panel"><img loading="lazy" src="assets/bloco-07.webp" alt="Sugerencia de regalo y datos bancarios" width="941" height="1672"></section>
+    <section class="panel panel--last">
+      <img loading="lazy" src="assets/bloco-08.webp" alt="Confirmación de asistencia y cómo llegar" width="941" height="1672">
+      <a class="hotspot hotspot--rsvp" href="https://wa.me/59895736947?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20a%20los%2015%20de%20Valentina%20Olivera.%0ANombre%3A%0ACantidad%20de%20personas%3A" target="_blank" rel="noopener" aria-label="Confirmar asistencia por WhatsApp"></a>
+      <a class="hotspot hotspot--map" href="https://maps.app.goo.gl/bFU5RWNVWDQGrSWM6" target="_blank" rel="noopener" aria-label="Abrir ubicación de Galeto Italia en Google Maps"></a>
+    </section>
+  </main>
+
+  <button id="soundToggle" class="sound-toggle" type="button" hidden aria-label="Pausar música" aria-pressed="true">
+    <span id="soundIcon" aria-hidden="true">♪</span>
+  </button>
+  <script src="app.js"></script>
+</body>
+</html>

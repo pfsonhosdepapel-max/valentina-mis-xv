@@ -1,0 +1,168 @@
+:root {
+  color-scheme: dark;
+  --plum: #241126;
+  --plum-soft: #432345;
+  --gold: #e8c77c;
+  --ivory: #fff4da;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--plum); }
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(circle at top, #563055 0, var(--plum) 35rem);
+  color: var(--ivory);
+  font-family: Georgia, "Times New Roman", serif;
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 2rem;
+  background: var(--plum) url("assets/bloco-01.webp") center/cover no-repeat;
+  transition: opacity .9s ease, visibility .9s ease;
+}
+.welcome::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, transparent 0, rgba(20,6,22,.35) 45%, rgba(20,6,22,.83) 100%);
+}
+.welcome__veil {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background: rgba(29, 10, 30, .24);
+}
+.welcome__content { position: relative; z-index: 1; text-align: center; transform: translateY(22vh); }
+.eyebrow { margin: 0; color: var(--gold); font-size: clamp(1.8rem, 8vw, 3.4rem); letter-spacing: .12em; text-shadow: 0 2px 18px #160717; }
+.welcome h1 { margin: .25rem 0 1.5rem; font-weight: 400; font-size: clamp(1rem, 4.8vw, 1.6rem); letter-spacing: .48em; color: var(--ivory); }
+.open-button {
+  min-width: 15rem;
+  min-height: 3.5rem;
+  padding: .95rem 1.35rem;
+  border: 1px solid rgba(244, 218, 161, .9);
+  border-radius: 999px;
+  background: rgba(47, 20, 49, .72);
+  box-shadow: 0 0 28px rgba(232, 199, 124, .22), inset 0 0 20px rgba(255,255,255,.04);
+  color: var(--ivory);
+  font: 600 .9rem/1 Arial, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.open-button__spark { margin-left: .55rem; color: var(--gold); }
+.sound-note { margin: .8rem 0 0; font: .75rem/1.4 Arial, sans-serif; letter-spacing: .04em; color: rgba(255,244,218,.78); }
+.welcome.is-closing { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.video-layer { position: fixed; inset: 0; z-index: 90; background: #09050a; }
+.video-layer video { width: 100%; height: 100%; object-fit: contain; }
+.after-video { 
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: radial-gradient(circle at 50% 30%, rgba(105,60,105,.78), rgba(20,6,22,.96) 78%), url("assets/bloco-01.webp") center/cover;
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+.after-video[hidden], .video-layer[hidden] { display: none !important; }
+.after-video.is-visible { opacity: 1; }
+.after-video__card { width: min(100%, 28rem); padding: 2.2rem 1.5rem; text-align: center; border: 1px solid rgba(232,199,124,.36); border-radius: 1.4rem; background: rgba(36,17,38,.5); box-shadow: 0 0 45px rgba(232,199,124,.14), inset 0 0 28px rgba(255,255,255,.04); backdrop-filter: blur(10px); }
+.after-video__card h1 { margin: .35rem 0 1.8rem; font-weight: 400; font-size: clamp(1rem, 4.8vw, 1.6rem); letter-spacing: .48em; color: var(--ivory); }
+.scroll-note { margin: 1rem 0 0; font: .8rem/1.4 Arial, sans-serif; letter-spacing: .05em; color: rgba(255,244,218,.78); }
+.skip-video {
+  position: absolute;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  padding: .7rem 1rem;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 999px;
+  background: rgba(0,0,0,.45);
+  color: white;
+}
+
+.invitation {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background: var(--plum);
+  box-shadow: 0 0 70px rgba(0,0,0,.42);
+}
+.invitation.is-visible { opacity: 1; }
+.panel {
+  position: relative;
+  z-index: 1;
+  /* A sobreposição acompanha 18% da altura proporcional da arte. */
+  margin-top: clamp(-180px, -32vw, -102px);
+  background: transparent;
+}
+.panel:first-child { margin-top: 0; }
+.panel img { display: block; width: 100%; height: auto; }
+.panel:not(.panel--first):not(.panel--last) img {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 82%, transparent 100%);
+}
+.panel--first img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 82%, transparent 100%);
+}
+.panel--last img {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 100%);
+}
+
+.countdown {
+  position: absolute;
+  z-index: 3;
+  top: 53%;
+  left: 50%;
+  width: 88%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--ivory);
+}
+.countdown > p { margin: 0 0 1rem; font: 600 clamp(.72rem, 2.8vw, .95rem)/1 Arial, sans-serif; letter-spacing: .45em; color: var(--gold); }
+.countdown__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: .45rem; }
+.countdown__grid div { padding: .75rem .2rem; border-top: 1px solid rgba(232,199,124,.68); border-bottom: 1px solid rgba(232,199,124,.32); background: rgba(38,15,40,.18); backdrop-filter: blur(4px); }
+.countdown strong { display: block; font-size: clamp(1.35rem, 6.5vw, 2.25rem); font-weight: 400; }
+.countdown span { display: block; margin-top: .3rem; font: clamp(.55rem,2.2vw,.72rem)/1 Arial,sans-serif; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,244,218,.82); }
+
+.hotspot { position: absolute; z-index: 5; left: 15.6%; width: 68.8%; height: 6.7%; border-radius: 999px; }
+.hotspot--rsvp { top: 78.4%; }
+.hotspot--map { top: 86.8%; }
+.hotspot:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+
+.sound-toggle {
+  position: fixed;
+  z-index: 50;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 1px solid rgba(232,199,124,.85);
+  border-radius: 50%;
+  background: rgba(36,17,38,.84);
+  box-shadow: 0 4px 22px rgba(0,0,0,.32);
+  color: var(--gold);
+  font-size: 1.35rem;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .welcome, .invitation { transition-duration: .01ms; }
+}
